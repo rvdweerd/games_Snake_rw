@@ -28,9 +28,9 @@ private:
 	static constexpr int board_x0 = 5;
 	static constexpr int board_y0 = 5;
 	static constexpr int growth = 100;
-	static constexpr int tile_size = 7;
-	static constexpr int boardSizeX = 1340/7;
-	static constexpr int boardSizeY = 690/7;
+	static constexpr int tile_size = 30;
+	static constexpr int boardSizeX = 1340/30;
+	static constexpr int boardSizeY = 690/30;
 	
 	int board_array[boardSizeX * boardSizeY];
 	bool initialized = false;

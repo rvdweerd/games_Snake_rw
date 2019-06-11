@@ -21,6 +21,8 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "Board.h"
+#include <chrono>
+#include <thread>
 
 Game::Game(MainWindow& wnd)
 	:
@@ -40,6 +42,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	
+	
 	/*if (!brd.IsInitialized())
 	{
 		brd.BoardInit();
@@ -89,7 +93,8 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-
+	using namespace std::chrono_literals;
+	std::this_thread::sleep_for(.1s);
 	brd.DrawBoard(gfx);
 
 }
