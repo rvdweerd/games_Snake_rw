@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Board.h"
 #include "Colors.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -46,6 +47,8 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Board brd;
-	
+	FrameTimer frmTime;
+	float timeCounter = 0.0f;
+	float timePeriod = 1.0f;
 	/********************************/
 };

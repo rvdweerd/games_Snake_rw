@@ -73,16 +73,35 @@ void Game::UpdateModel()
 			brd.SetSnakeDirection(5);
 		}
 
-		//Movement of snake
-		//if (!brd.OutOfBounds())  // USE THIS IF YOU WANT TO FORCE A HALT AT THE BORDER
-		brd.TestForBorderJump();      // USE THIS IF YOU WANT TO JUMP TO OPPOSITE BORDER AT THE BORDER
+		//Control of speed
+		if (wnd.kbd.KeyIsPressed(0x67)) // faster
 		{
-			if (brd.GetSnakeDirection() != 5)
-			{
-				brd.BoardUpdateReduceTail();
-				brd.BoardUpdateAdvanceHead();
-			}
+			timePeriod /= 1.05f;
+		}
+		if (wnd.kbd.KeyIsPressed(0x61)) // slower
+		{
+			timePeriod *= 1.05f;
+		}
 
+		
+		if (timeCounter >= timePeriod)
+		{
+			//Movement of snake
+			//if (!brd.OutOfBounds())  // USE THIS IF YOU WANT TO FORCE A HALT AT THE BORDER
+			brd.TestForBorderJump();      // USE THIS IF YOU WANT TO JUMP TO OPPOSITE BORDER AT THE BORDER
+			{
+				if (brd.GetSnakeDirection() != 5)
+				{
+					brd.BoardUpdateReduceTail();
+					brd.BoardUpdateAdvanceHead();
+				}
+
+			}
+			timeCounter = 0;
+		}
+		else
+		{
+			timeCounter += frmTime.Mark();
 		}
 	}
 	else
@@ -93,10 +112,8 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	using namespace std::chrono_literals;
-	std::this_thread::sleep_for(.1s);
-	brd.DrawBoard(gfx);
 
+	brd.DrawBoard(gfx);
 }
 
 
